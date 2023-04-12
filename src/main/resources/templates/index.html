@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaft.org" xlmns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" th:href="@{/css/indexStyle.css}"/>
+        <title>Lista de produtos</title>
+        <h1 class="tittle">Produtos</h1>
+    </head>
+    <body>
+        <div class="table-overflow">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Estoque</th>
+                        <th scope="col">Validade</th>
+                        <th scope="col">ação</th>
+                    </tr>
+                </thead>
+                    
+                <tbody>
+                    <tr scope="row" th:each="produto : ${produtos}">
+                        <td><span th:text="${produto.name}" ></span></td>
+                        <td><span th:text="${produto.brand}" ></span></td>
+                        <td><span th:text="${produto.price}" ></span></td>
+                        <td><span th:text="${produto.quantityInStock}" ></span></td>
+                        <td><span th:text="${produto.validity}" ></span></td>
+                        <td>
+                            <div class="buttons">
+                                <a th:href="@{deletar/{id}(id=${produto.id})}" style="color: #181D31;">
+                                    <i class="material-icons">delete</i>
+                                </a>
+                                <a th:href="@{editar/{id}(id=${produto.id})}" style="color: #181D31;">
+                                    <i class="material-icons">edit</i>
+                                </a><!--control-buttons-->
+                            </div>  
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="center-button">
+                <div><a href="/registrarProduto"><button type="button">registrar um novo produto</button></a></div>
+            </div><!--button-->
+        </div> <!--table-->
+
+        
+    </body>
+</html>
